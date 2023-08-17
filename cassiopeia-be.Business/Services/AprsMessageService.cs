@@ -11,7 +11,7 @@ namespace cassiopeia_be.Business.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<AprsMessageDTO>> GetAprsMessagesBySatelliteId(int satelliteId)
+        public async Task<IEnumerable<AprsMessageDTO?>> GetAprsMessagesBySatelliteId(int satelliteId)
         {
             var list = await _context.AprsMessages
                 .Where(aprs => aprs.SatelliteId == satelliteId)
@@ -26,7 +26,7 @@ namespace cassiopeia_be.Business.Services
                 })
                 .ToListAsync();
 
-            return list;
+            return list.Count > 0 ? list : null;
         }
     }
 }
