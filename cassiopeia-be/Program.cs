@@ -1,4 +1,5 @@
-﻿using cassiopeia_be.Data;
+﻿using cassiopeia_be.Business.Services;
+using cassiopeia_be.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,9 @@ builder.Services.AddDbContext<CassiopeiaContext>(options =>
 {
     options.UseSqlServer(connString);
 });
+builder.Services.AddScoped<AprsMessageService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
