@@ -7,6 +7,8 @@ namespace cassiopeia_be.Data
     {
         public DbSet<SatelliteInfo> SatelliteInfos { get; set; }
 
+        public DbSet<AprsMessage> AprsMessages { get; set; }
+
         public CassiopeiaContext(DbContextOptions<CassiopeiaContext> options) : base(options)
         { }
 
@@ -30,6 +32,18 @@ namespace cassiopeia_be.Data
                     Status = "active",
                     Owner = "notch",
                     OriginCountry = "Croatia"
+                });
+
+            modelBuilder.Entity<AprsMessage>().HasData(
+                new AprsMessage
+                {
+                    Id = 1,
+                    Time = DateTime.Now,
+                    Message = "Hello from CubeSat-1!",
+                    Observer = "Ground Station A",
+                    Station = "CubeSat-1",
+                    Source = "NOCALL",
+                    SatelliteId = 1 //možda neće raditi
                 });
         }
     }
