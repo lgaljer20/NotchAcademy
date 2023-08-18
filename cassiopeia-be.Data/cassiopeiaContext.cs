@@ -17,7 +17,6 @@ namespace cassiopeia_be.Data
             modelBuilder.Entity<SatelliteInfo>(entity =>
             {
                 entity.Property(e => e.Name).IsRequired();
-                // Configure other properties as needed
             });
 
             modelBuilder.Entity<SatelliteInfo>().HasData(

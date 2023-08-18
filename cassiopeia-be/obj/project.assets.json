@@ -1230,6 +1230,9 @@
       "cassiopeia-be.Business/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "cassiopeia-be.Data": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/cassiopeia-be.Business.dll": {}
         },

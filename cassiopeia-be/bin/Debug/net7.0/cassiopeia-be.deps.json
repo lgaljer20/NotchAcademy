@@ -670,6 +670,9 @@
         }
       },
       "cassiopeia-be.Business/1.0.0": {
+        "dependencies": {
+          "cassiopeia-be.Data": "1.0.0"
+        },
         "runtime": {
           "cassiopeia-be.Business.dll": {}
         }

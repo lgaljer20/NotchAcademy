@@ -32,7 +32,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\cassiopeia-be\\cassiopeia-be.Data\\cassiopeia-be.Data.csproj": {
+                "projectPath": "D:\\cassiopeia-be\\cassiopeia-be.Data\\cassiopeia-be.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
