@@ -26,7 +26,7 @@ namespace cassiopeia_be.Data
                     Name = "cassiopeia",
                     Image = "https://some_random_image.jpg",
                     LaunchDate = DateTime.Parse("2023-08-07T15:45:00Z"),
-                    Status = "active",
+                    Status = true,
                     Owner = "notch",
                     OriginCountry = "Croatia"
                 });
