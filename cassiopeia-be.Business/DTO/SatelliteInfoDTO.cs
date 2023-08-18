@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System;
-
-namespace cassiopeia_be.Business.DTO 
+﻿namespace cassiopeia_be.Business.DTO
 {
     public class SatelliteInfoDTO : BaseDTO
     {
@@ -18,4 +10,3 @@ namespace cassiopeia_be.Business.DTO
         public string OriginCountry { get; set; }
     }
 }
-
