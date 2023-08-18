@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace cassiopeia_be.Data.Migrations
 {
-    /// <inheritdoc />
     public partial class satelliteInfo : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -34,8 +32,6 @@ namespace cassiopeia_be.Data.Migrations
                 columns: new[] { "Id", "Image", "LaunchDate", "Name", "OriginCountry", "Owner", "Status" },
                 values: new object[] { 1, "https://some_random_image.jpg", new DateTime(2023, 8, 7, 17, 45, 0, 0, DateTimeKind.Local), "cassiopeia", "Croatia", "notch", "active" });
         }
-
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -1,5 +1,5 @@
 ﻿using cassiopeia_be.Business.DTO;
-using Microsoft.AspNetCore.Http;
+using cassiopeia_be.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cassiopeia_be.Controllers
@@ -8,19 +8,50 @@ namespace cassiopeia_be.Controllers
     [ApiController]
     public class SatelliteInfoController : ControllerBase
     {
-        [HttpGet("GetSatelliteInfo")]
-        public IActionResult GetSatelliteInfo()
+        private readonly ISatelliteInfoService _service;
+
+        public SatelliteInfoController(ISatelliteInfoService service)
         {
-            var satelliteInfo = new SatelliteInfoDTO
+            _service = service;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SatelliteInfoDTO>>> GetAll()
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SatelliteInfoDTO>> GetById(int id)
+        {
+            var result = await _service.GetByIdAsync(id);
+
+            if (result == null)
             {
-                Name = "cassiopeia",
-                Image = "https://some_random_image.jpg",
-                LaunchDate = DateTime.Parse("2023-08-07T15:45:00Z"),
-                Status = "active",
-                Owner = "notch",
-                OriginCountry = "Croatia"
-            };
-            return Ok(satelliteInfo);
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SatelliteInfoDTO>> CreateSatellite(CreateEditSatelliteInfoDTO model)
+        {
+            return Ok(await _service.CreateAsync(model));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<SatelliteInfoDTO>> EditSatellite(int id, CreateEditSatelliteInfoDTO model)
+        {
+            return Ok(await _service.UpdateAsync(id, model));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteSatellite(int id)
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
         }
     }
 }
