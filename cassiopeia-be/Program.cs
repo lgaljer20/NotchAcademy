@@ -1,13 +1,12 @@
-﻿using cassiopeia_be.Business.Services;
+
+﻿using cassiopeia_be.Business.Interfaces;
+using cassiopeia_be.Business.Services;
 using cassiopeia_be.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 string connString = builder.Configuration.GetConnectionString("cassiopeiaDB");
@@ -16,9 +15,8 @@ builder.Services.AddDbContext<CassiopeiaContext>(options =>
 {
     options.UseSqlServer(connString);
 });
+builder.Services.AddTransient<ISatelliteInfoService, SatelliteInfoService>();
 builder.Services.AddScoped<AprsMessageService>();
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,4 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 

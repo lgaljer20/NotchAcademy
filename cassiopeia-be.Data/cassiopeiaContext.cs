@@ -1,3 +1,4 @@
+
 ﻿using cassiopeia_be.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -88,3 +89,4 @@ namespace cassiopeia_be.Data
         }
     }
 }
+
