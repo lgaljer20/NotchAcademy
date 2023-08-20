@@ -26,7 +26,7 @@ namespace cassiopeia_be.Business.Services
                 })
                 .ToListAsync();
 
-            return list.Count > 0 ? list : null;
+            return list;
         }
     }
 }
