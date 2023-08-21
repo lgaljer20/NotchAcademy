@@ -1,3 +1,4 @@
+
 ﻿using cassiopeia_be.Business.Interfaces;
 using cassiopeia_be.Business.Services;
 using cassiopeia_be.Data;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<CassiopeiaContext>(options =>
     options.UseSqlServer(connString);
 });
 builder.Services.AddTransient<ISatelliteInfoService, SatelliteInfoService>();
+builder.Services.AddScoped<AprsMessageService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,4 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 

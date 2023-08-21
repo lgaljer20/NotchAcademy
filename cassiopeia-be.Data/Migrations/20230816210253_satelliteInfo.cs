@@ -1,3 +1,4 @@
+
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -39,3 +40,4 @@ namespace cassiopeia_be.Data.Migrations
         }
     }
 }
+

@@ -1,3 +1,4 @@
+
 ﻿namespace cassiopeia_be.Business.DTO 
 {
     public class CreateEditSatelliteInfoDTO
@@ -20,4 +21,5 @@
         public string OriginCountry { get; set; }
     }
 }
+
 

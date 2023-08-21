@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cassiopeia_be.Data;
 
@@ -11,9 +12,11 @@ using cassiopeia_be.Data;
 namespace cassiopeia_be.Data.Migrations
 {
     [DbContext(typeof(CassiopeiaContext))]
-    partial class CassiopeiaContextModelSnapshot : ModelSnapshot
+    [Migration("20230817134012_aprs")]
+    partial class aprs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,47 +70,7 @@ namespace cassiopeia_be.Data.Migrations
                             SatelliteId = 1,
                             Source = "NOCALL",
                             Station = "CubeSat-1",
-                            Time = new DateTime(2023, 8, 17, 15, 54, 20, 853, DateTimeKind.Local).AddTicks(1855)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Message = "Temperature: 25°C, Battery: 85%",
-                            Observer = "Ground Station B",
-                            SatelliteId = 1,
-                            Source = "NOCALL",
-                            Station = "CubeSat-2",
-                            Time = new DateTime(2023, 8, 17, 15, 54, 20, 853, DateTimeKind.Local).AddTicks(1865)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Message = "Deployed solar panels successfully!",
-                            Observer = "Ground Station C",
-                            SatelliteId = 1,
-                            Source = "NOCALL",
-                            Station = "CubeSat-3",
-                            Time = new DateTime(2023, 8, 17, 15, 54, 20, 853, DateTimeKind.Local).AddTicks(1868)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Message = "Orbit update: Altitude: 400 km, Inclination: 45°",
-                            Observer = "Ground Station D",
-                            SatelliteId = 1,
-                            Source = "NOCALL",
-                            Station = "CubeSat-4",
-                            Time = new DateTime(2023, 8, 17, 15, 54, 20, 853, DateTimeKind.Local).AddTicks(1871)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Message = "Experiment results: Successful microgravity test.",
-                            Observer = "Ground Station E",
-                            SatelliteId = 1,
-                            Source = "NOCALL",
-                            Station = "CubeSat-5",
-                            Time = new DateTime(2023, 8, 17, 15, 54, 20, 853, DateTimeKind.Local).AddTicks(1873)
+                            Time = new DateTime(2023, 8, 17, 15, 40, 12, 520, DateTimeKind.Local).AddTicks(6166)
                         });
                 });
 
