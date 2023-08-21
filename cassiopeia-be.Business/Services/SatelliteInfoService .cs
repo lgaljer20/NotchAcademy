@@ -2,6 +2,7 @@
 using cassiopeia_be.Business.Interfaces;
 using cassiopeia_be.Data;
 using cassiopeia_be.Data.Entities;
+using cassiopeia_be.Data.Migrations;
 using Microsoft.EntityFrameworkCore;
 
 namespace cassiopeia_be.Business.Services
@@ -20,9 +21,26 @@ namespace cassiopeia_be.Business.Services
                 Name = x.Name,
                 Image = x.Image,
                 LaunchDate = x.LaunchDate,
-                Status = x.Status,
+                StatusIsEnabled = x.StatusIsEnabled,
                 Owner = x.Owner,
-                OriginCountry = x.OriginCountry
+                OriginCountry = x.OriginCountry,
+                ReceivedByIsEnabled = x.ReceivedByIsEnabled,
+                SignalCountIsEnabled = x.SignalCountIsEnabled,
+                APRSIsEnabled =  x.APRSIsEnabled,
+                BatteryVoltageIsEnabled = x.BatteryVoltageIsEnabled,
+                BatteryCapacityIsEnabled = x.BatteryCapacityIsEnabled,
+                BatteryTemperatureIsEnabled = x.BatteryTemperatureIsEnabled,
+                SolarTemperatureIsEnabled = x.SolarTemperatureIsEnabled,
+                VHFTemperatureIsEnabled = x.VHFTemperatureIsEnabled,
+                OBC9DOTemperatureIsEnabled = x.OBC9DOTemperatureIsEnabled,
+                OBCNumberIsEnabled = x.OBCNumberIsEnabled,
+                OBCPacketRecordIsEnabled = x.OBCPacketRecordIsEnabled,
+                OBCTimestampIsEnabled = x.OBCTimestampIsEnabled,
+                OBCMCUTemperatureIsEnabled = x.OBCMCUTemperatureIsEnabled,
+                OBCUptimeTotalIsEnabled = x.OBCUptimeTotalIsEnabled,
+                OBCRestartIsEnabled = x.OBCRestartIsEnabled,
+                OBCFreeMemoryIsEnabled = x.OBCFreeMemoryIsEnabled
+
             }).ToListAsync();
 
             return list;
@@ -44,9 +62,25 @@ namespace cassiopeia_be.Business.Services
                 Name = entity.Name,
                 Image = entity.Image,
                 LaunchDate = entity.LaunchDate,
-                Status = entity.Status,
+                StatusIsEnabled = entity.StatusIsEnabled,
                 Owner = entity.Owner,
-                OriginCountry = entity.OriginCountry
+                OriginCountry = entity.OriginCountry,
+                ReceivedByIsEnabled = entity.ReceivedByIsEnabled,
+                SignalCountIsEnabled = entity.SignalCountIsEnabled,
+                APRSIsEnabled = entity.APRSIsEnabled,
+                BatteryVoltageIsEnabled = entity.BatteryVoltageIsEnabled,
+                BatteryCapacityIsEnabled = entity.BatteryCapacityIsEnabled,
+                BatteryTemperatureIsEnabled = entity.BatteryTemperatureIsEnabled,
+                SolarTemperatureIsEnabled = entity.SolarTemperatureIsEnabled,
+                VHFTemperatureIsEnabled = entity.VHFTemperatureIsEnabled,
+                OBC9DOTemperatureIsEnabled = entity.OBC9DOTemperatureIsEnabled,
+                OBCNumberIsEnabled = entity.OBCNumberIsEnabled,
+                OBCPacketRecordIsEnabled = entity.OBCPacketRecordIsEnabled,
+                OBCTimestampIsEnabled = entity.OBCTimestampIsEnabled,
+                OBCMCUTemperatureIsEnabled = entity.OBCMCUTemperatureIsEnabled,
+                OBCUptimeTotalIsEnabled = entity.OBCUptimeTotalIsEnabled,
+                OBCRestartIsEnabled = entity.OBCRestartIsEnabled,
+                OBCFreeMemoryIsEnabled = entity.OBCFreeMemoryIsEnabled
             };
         }
 
@@ -58,9 +92,26 @@ namespace cassiopeia_be.Business.Services
                 Name = model.Name,
                 Image = model.Image,
                 LaunchDate = model.LaunchDate,
-                Status = model.Status,
+                StatusIsEnabled = model.StatusIsEnabled,
                 Owner = model.Owner,
-                OriginCountry = model.OriginCountry
+                OriginCountry = model.OriginCountry,
+                ReceivedByIsEnabled = model.ReceivedByIsEnabled,
+                SignalCountIsEnabled = model.SignalCountIsEnabled,
+                APRSIsEnabled = model.APRSIsEnabled,
+                BatteryVoltageIsEnabled = model.BatteryVoltageIsEnabled,
+                BatteryCapacityIsEnabled = model.BatteryCapacityIsEnabled,
+                BatteryTemperatureIsEnabled = model.BatteryTemperatureIsEnabled,
+                SolarTemperatureIsEnabled = model.SolarTemperatureIsEnabled,
+                VHFTemperatureIsEnabled = model.VHFTemperatureIsEnabled,
+                OBC9DOTemperatureIsEnabled = model.OBC9DOTemperatureIsEnabled,
+                OBCNumberIsEnabled = model.OBCNumberIsEnabled,
+                OBCPacketRecordIsEnabled = model.OBCPacketRecordIsEnabled,
+                OBCTimestampIsEnabled = model.OBCTimestampIsEnabled,
+                OBCMCUTemperatureIsEnabled = model.OBCMCUTemperatureIsEnabled,
+                OBCUptimeTotalIsEnabled = model.OBCUptimeTotalIsEnabled,
+                OBCRestartIsEnabled = model.OBCRestartIsEnabled,
+                OBCFreeMemoryIsEnabled = model.OBCFreeMemoryIsEnabled
+
             };
 
             await _context.SatelliteInfos.AddAsync(entity);
@@ -72,9 +123,25 @@ namespace cassiopeia_be.Business.Services
                 Name = entity.Name,
                 Image = entity.Image,
                 LaunchDate = entity.LaunchDate,
-                Status = entity.Status,
+                StatusIsEnabled = entity.StatusIsEnabled,
                 Owner = entity.Owner,
-                OriginCountry = entity.OriginCountry
+                OriginCountry = entity.OriginCountry,
+                ReceivedByIsEnabled = entity.ReceivedByIsEnabled,
+                SignalCountIsEnabled = entity.SignalCountIsEnabled,
+                APRSIsEnabled = entity.APRSIsEnabled,
+                BatteryVoltageIsEnabled = entity.BatteryVoltageIsEnabled,
+                BatteryCapacityIsEnabled = entity.BatteryCapacityIsEnabled,
+                BatteryTemperatureIsEnabled = entity.BatteryTemperatureIsEnabled,
+                SolarTemperatureIsEnabled = entity.SolarTemperatureIsEnabled,
+                VHFTemperatureIsEnabled = entity.VHFTemperatureIsEnabled,
+                OBC9DOTemperatureIsEnabled = entity.OBC9DOTemperatureIsEnabled,
+                OBCNumberIsEnabled = entity.OBCNumberIsEnabled,
+                OBCPacketRecordIsEnabled = entity.OBCPacketRecordIsEnabled,
+                OBCTimestampIsEnabled = entity.OBCTimestampIsEnabled,
+                OBCMCUTemperatureIsEnabled = entity.OBCMCUTemperatureIsEnabled,
+                OBCUptimeTotalIsEnabled = entity.OBCUptimeTotalIsEnabled,
+                OBCRestartIsEnabled = entity.OBCRestartIsEnabled,
+                OBCFreeMemoryIsEnabled = entity.OBCFreeMemoryIsEnabled
             };
         }
 
@@ -91,9 +158,25 @@ namespace cassiopeia_be.Business.Services
             entity.Name = model.Name;
             entity.Image = model.Image;
             entity.LaunchDate = model.LaunchDate;
-            entity.Status = model.Status;
+            entity.StatusIsEnabled = model.StatusIsEnabled;
             entity.Owner = model.Owner;
             entity.OriginCountry = model.OriginCountry;
+            entity.ReceivedByIsEnabled = model.ReceivedByIsEnabled;
+            entity.SignalCountIsEnabled = model.SignalCountIsEnabled;
+            entity.APRSIsEnabled = model.APRSIsEnabled;
+            entity.BatteryVoltageIsEnabled = model.BatteryVoltageIsEnabled;
+            entity.BatteryCapacityIsEnabled = model.BatteryCapacityIsEnabled;
+            entity.BatteryTemperatureIsEnabled = model.BatteryTemperatureIsEnabled;
+            entity.SolarTemperatureIsEnabled = model.SolarTemperatureIsEnabled;
+            entity.VHFTemperatureIsEnabled = model.VHFTemperatureIsEnabled;
+            entity.OBC9DOTemperatureIsEnabled = model.OBC9DOTemperatureIsEnabled;
+            entity.OBCNumberIsEnabled = model.OBCNumberIsEnabled;
+            entity.OBCPacketRecordIsEnabled = model.OBCPacketRecordIsEnabled;
+            entity.OBCTimestampIsEnabled = model.OBCTimestampIsEnabled;
+            entity.OBCMCUTemperatureIsEnabled = model.OBCMCUTemperatureIsEnabled;
+            entity.OBCUptimeTotalIsEnabled = model.OBCUptimeTotalIsEnabled;
+            entity.OBCRestartIsEnabled = model.OBCRestartIsEnabled;
+            entity.OBCFreeMemoryIsEnabled = model.OBCFreeMemoryIsEnabled;
 
             await _context.SaveChangesAsync();
 
@@ -103,9 +186,25 @@ namespace cassiopeia_be.Business.Services
                 Name = entity.Name,
                 Image = entity.Image,
                 LaunchDate = entity.LaunchDate,
-                Status = entity.Status,
+                StatusIsEnabled = entity.StatusIsEnabled,
                 Owner = entity.Owner,
-                OriginCountry = entity.OriginCountry
+                OriginCountry = entity.OriginCountry,
+                ReceivedByIsEnabled = entity.ReceivedByIsEnabled,
+                SignalCountIsEnabled = entity.SignalCountIsEnabled,
+                APRSIsEnabled = entity.APRSIsEnabled,
+                BatteryVoltageIsEnabled = entity.BatteryVoltageIsEnabled,
+                BatteryCapacityIsEnabled = entity.BatteryCapacityIsEnabled,
+                BatteryTemperatureIsEnabled = entity.BatteryTemperatureIsEnabled,
+                SolarTemperatureIsEnabled = entity.SolarTemperatureIsEnabled,
+                VHFTemperatureIsEnabled = entity.VHFTemperatureIsEnabled,
+                OBC9DOTemperatureIsEnabled = entity.OBC9DOTemperatureIsEnabled,
+                OBCNumberIsEnabled = entity.OBCNumberIsEnabled,
+                OBCPacketRecordIsEnabled = entity.OBCPacketRecordIsEnabled,
+                OBCTimestampIsEnabled = entity.OBCTimestampIsEnabled,
+                OBCMCUTemperatureIsEnabled = entity.OBCMCUTemperatureIsEnabled,
+                OBCUptimeTotalIsEnabled = entity.OBCUptimeTotalIsEnabled,
+                OBCRestartIsEnabled = entity.OBCRestartIsEnabled,
+                OBCFreeMemoryIsEnabled = entity.OBCFreeMemoryIsEnabled
             };
         }
     }
