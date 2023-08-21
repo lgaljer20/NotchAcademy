@@ -30,9 +30,26 @@ namespace cassiopeia_be.Data
                     Name = "cassiopeia",
                     Image = "https://some_random_image.jpg",
                     LaunchDate = DateTime.Parse("2023-08-07T15:45:00Z"),
-                    Status = "active",
+                    StatusIsEnabled = true,
                     Owner = "notch",
-                    OriginCountry = "Croatia"
+                    OriginCountry = "Croatia",
+                    ReceivedByIsEnabled = true,
+                    SignalCountIsEnabled = true,
+                    APRSIsEnabled = true,
+                    BatteryVoltageIsEnabled = true,
+                    BatteryCapacityIsEnabled = true,
+                    BatteryTemperatureIsEnabled = true,
+                    SolarTemperatureIsEnabled = true,
+                    UHFTemperatureIsEnabled = true,
+                    VHFTemperatureIsEnabled = true,
+                    OBC9DOTemperatureIsEnabled = true,
+                    OBCNumberIsEnabled = true,
+                    OBCPacketRecordIsEnabled = true,
+                    OBCTimestampIsEnabled = true,
+                    OBCMCUTemperatureIsEnabled = true,
+                    OBCUptimeTotalIsEnabled = true,
+                    OBCRestartIsEnabled = true,
+                    OBCFreeMemoryIsEnabled = true
                 });
 
             modelBuilder.Entity<AprsMessage>().HasData(
