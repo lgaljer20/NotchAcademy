@@ -2,7 +2,7 @@ name: Build, Push and Deploy on Cassiopeia-be on GKE
 on:
   push:
     branches:
-      - ops
+      - master
 env:
   DOCKER_REGISTRY: europe-west3-docker.pkg.dev/ag04-inventory/devcademy2023
   IMAGE_NAME: cassiopeiabe
