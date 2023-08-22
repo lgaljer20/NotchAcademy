@@ -17,6 +17,8 @@ builder.Services.AddDbContext<CassiopeiaContext>(options =>
 });
 builder.Services.AddTransient<ISatelliteInfoService, SatelliteInfoService>();
 builder.Services.AddScoped<AprsMessageService>();
+builder.Services.AddScoped<ITemperatureDataService, TemperatureDataService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

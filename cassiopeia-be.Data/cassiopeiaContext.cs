@@ -9,6 +9,7 @@ namespace cassiopeia_be.Data
         public DbSet<SatelliteInfo> SatelliteInfos { get; set; }
 
         public DbSet<AprsMessage> AprsMessages { get; set; }
+        public DbSet<TemperatureData> TemperatureDataRecords { get; set; }
 
         public CassiopeiaContext(DbContextOptions<CassiopeiaContext> options) : base(options)
         { }
@@ -21,6 +22,12 @@ namespace cassiopeia_be.Data
             {
                 entity.Property(e => e.Name).IsRequired();
                 // Configure other properties as needed
+            });
+            modelBuilder.Entity<TemperatureData>(entity =>
+            {
+                entity.Property(e => e.Timestamp).IsRequired();
+                entity.Property(e => e.BatteryTemperature).IsRequired();
+                entity.Property(e => e.SystemTemperature).IsRequired();
             });
 
             modelBuilder.Entity<SatelliteInfo>().HasData(
@@ -103,6 +110,14 @@ namespace cassiopeia_be.Data
                     Source = "NOCALL",
                     SatelliteId = 1
                 });
+            modelBuilder.Entity<TemperatureData>().HasData(
+            new TemperatureData
+            {
+                Id = 1,
+                Timestamp = DateTime.UtcNow,
+                BatteryTemperature = 25.5,
+                SystemTemperature = 28.3
+            });
         }
     }
 }
