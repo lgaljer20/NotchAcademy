@@ -25,6 +25,7 @@
         public bool OBCUptimeTotalIsEnabled { get; set; }
         public bool OBCRestartIsEnabled { get; set; }
         public bool OBCFreeMemoryIsEnabled { get; set; }
+        public virtual ICollection<Battery> Batteries { get; set; }
     }
 }
 

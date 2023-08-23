@@ -14,9 +14,10 @@ namespace cassiopeia_be.Business.Services
             _context = context;
         }
 
-        public async Task<TemperatureDataDTO> GetLatestTemperatureDataAsync()
+        public async Task<TemperatureDataDTO> GetLatestTemperatureDataAsync(int SatelliteId)
         {
             return await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .OrderByDescending(data => data.Timestamp)
                 .Select(data => new TemperatureDataDTO
                 {
@@ -27,50 +28,56 @@ namespace cassiopeia_be.Business.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<double> GetMaxBatteryTemperatureAsync()
+        public async Task<double> GetMaxBatteryTemperatureAsync(int SatelliteId)
         {
             return await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MaxAsync(data => data.BatteryTemperature);
         }
 
-        public async Task<double> GetMinBatteryTemperatureAsync()
+        public async Task<double> GetMinBatteryTemperatureAsync(int SatelliteId)
         {
             return await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MinAsync(data => data.BatteryTemperature);
         }
 
-        public async Task<double> GetCurrentBatteryTemperatureAsync()
+        public async Task<double> GetCurrentBatteryTemperatureAsync(int SatelliteId)
         {
             var latestTimestamp = await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MaxAsync(data => data.Timestamp);
 
             var currentBatteryTemperature = await _context.TemperatureDataRecords
-                .Where(data => data.Timestamp == latestTimestamp)
+                .Where(data => data.Battery.SatelliteId == SatelliteId && data.Timestamp == latestTimestamp)
                 .Select(data => data.BatteryTemperature)
                 .FirstOrDefaultAsync();
 
             return currentBatteryTemperature;
         }
 
-        public async Task<double> GetMaxSystemTemperatureAsync()
+        public async Task<double> GetMaxSystemTemperatureAsync(int SatelliteId)
         {
             return await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MaxAsync(data => data.SystemTemperature);
         }
 
-        public async Task<double> GetMinSystemTemperatureAsync()
+        public async Task<double> GetMinSystemTemperatureAsync(int SatelliteId)
         {
             return await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MinAsync(data => data.SystemTemperature);
         }
 
-        public async Task<double> GetCurrentSystemTemperatureAsync()
+        public async Task<double> GetCurrentSystemTemperatureAsync(int SatelliteId)
         {
             var latestTimestamp = await _context.TemperatureDataRecords
+                .Where(data => data.Battery.SatelliteId == SatelliteId)
                 .MaxAsync(data => data.Timestamp);
 
             var currentSystemTemperature = await _context.TemperatureDataRecords
-                .Where(data => data.Timestamp == latestTimestamp)
+                .Where(data => data.Battery.SatelliteId == SatelliteId && data.Timestamp == latestTimestamp)
                 .Select(data => data.SystemTemperature)
                 .FirstOrDefaultAsync();
 

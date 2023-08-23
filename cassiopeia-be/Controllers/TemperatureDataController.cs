@@ -16,15 +16,15 @@ namespace cassiopeia_be.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<object>> GetTemperatureInfo()
+        public async Task<ActionResult<object>> GetTemperatureInfo(int SatelliteId)
         {
-            var latestTemperatureData = await _temperatureDataService.GetLatestTemperatureDataAsync();
-            var maxBatteryTemperature = await _temperatureDataService.GetMaxBatteryTemperatureAsync();
-            var minBatteryTemperature = await _temperatureDataService.GetMinBatteryTemperatureAsync();
-            var currentBatteryTemperature = await _temperatureDataService.GetCurrentBatteryTemperatureAsync();
-            var maxSystemTemperature = await _temperatureDataService.GetMaxSystemTemperatureAsync();
-            var minSystemTemperature = await _temperatureDataService.GetMinSystemTemperatureAsync();
-            var currentSystemTemperature = await _temperatureDataService.GetCurrentSystemTemperatureAsync();
+            var latestTemperatureData = await _temperatureDataService.GetLatestTemperatureDataAsync(SatelliteId);
+            var maxBatteryTemperature = await _temperatureDataService.GetMaxBatteryTemperatureAsync(SatelliteId);
+            var minBatteryTemperature = await _temperatureDataService.GetMinBatteryTemperatureAsync(SatelliteId);
+            var currentBatteryTemperature = await _temperatureDataService.GetCurrentBatteryTemperatureAsync(SatelliteId);
+            var maxSystemTemperature = await _temperatureDataService.GetMaxSystemTemperatureAsync(SatelliteId);
+            var minSystemTemperature = await _temperatureDataService.GetMinSystemTemperatureAsync(SatelliteId);
+            var currentSystemTemperature = await _temperatureDataService.GetCurrentSystemTemperatureAsync(SatelliteId);
 
             var temperatureInfo = new
             {
