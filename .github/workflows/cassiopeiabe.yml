@@ -29,7 +29,14 @@ jobs:
       - name: Get date/time
         id: date
         run: echo "date=$(date +'%y.%-m')" >> $GITHUB_OUTPUT
-      # Configure Docker to use the gcloud command-line tool as a credential helper for authentication
+      - name: Switch Connection String
+        run: |-
+          cd ./cassiopeia-be
+          jq ".ConnectionStrings.\"cassiopeiaDB\" = \"$SECRET_CONN_STRING\"" appsettings.json > appsettings_new.json
+          rm appsettings.json && mv appsettings_new.json appsettings.json
+          cd ..
+        env:
+          SECRET_CONN_STRING: ${{ secrets.CONN_STRING }}
       - name: Build Docker image
         run: docker build -t $IMAGE_NAME:latest .
       - name: Configure Docker client
