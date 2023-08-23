@@ -11,19 +11,21 @@ namespace cassiopeia_be.Business.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<AprsMessageDTO?>> GetAprsMessagesBySatelliteId(int satelliteId)
+        public async Task<IEnumerable<AprsMessageDTO>> GetAprsMessagesBySatelliteId(int satelliteId)
         {
             var list = await _context.AprsMessages
                 .Where(aprs => aprs.SatelliteId == satelliteId)
-                .Select(aprs => new AprsMessageDTO
-                {
-                    Time = aprs.Time,
-                    Message = aprs.Message,
-                    Observer = aprs.Observer,
-                    Station = aprs.Station,
-                    Source = aprs.Source
-                    
-                })
+            .Select(aprs => new AprsMessageDTO
+            {
+                Time = aprs.Time,
+                Message = aprs.Message,
+                Observer = aprs.Observer,
+                Station = aprs.Station,
+                Source = aprs.Source,
+                SatelliteId = aprs.SatelliteId,
+                Id = aprs.Id
+            })
+
                 .ToListAsync();
 
             return list;
