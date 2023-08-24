@@ -2,8 +2,7 @@
 using cassiopeia_be.Data.Entities;
 
 public class Battery : BaseEntity
-{
-    [ForeignKey("SatelliteId")]
+{ 
     public int SatelliteId { get; set; }
     public virtual SatelliteInfo SatelliteInfo { get; set; }
 
