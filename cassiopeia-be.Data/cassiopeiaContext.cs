@@ -133,24 +133,24 @@ namespace cassiopeia_be.Data
                 .HasForeignKey(bc => bc.BatteryId);
 
             modelBuilder.Entity<Battery>().HasData(
-                new Battery 
-                { Id = 1 },
-                new Battery 
-                { Id = 2 });
+                new Battery { Id = 1, SatelliteId = 1 },
+                new Battery { Id = 2, SatelliteId = 1 }
+            );
+
 
             modelBuilder.Entity<BatteryStatus>().HasData(
-                new BatteryStatus { BatteryId = 1, Voltage = 12.5, Current = 5.0, ChargeLevel = 80 },
-                new BatteryStatus { BatteryId = 2, Voltage = 13.2, Current = 4.8, ChargeLevel = 75 }
+                new BatteryStatus {Id = 1, BatteryId = 1, Voltage = 12.5, Current = 5.0, ChargeLevel = 80 },
+                new BatteryStatus {Id = 2, BatteryId = 2, Voltage = 13.2, Current = 4.8, ChargeLevel = 75 }
             );
 
             modelBuilder.Entity<TemperatureData>().HasData(
-                new TemperatureData { BatteryId = 1, Timestamp = DateTime.UtcNow, BatteryTemperature = 25.5, SystemTemperature = 28.3 },
-                new TemperatureData { BatteryId = 2, Timestamp = DateTime.UtcNow, BatteryTemperature = 24.8, SystemTemperature = 27.7 }
+                new TemperatureData {Id = 1, BatteryId = 1, Timestamp = DateTime.UtcNow, BatteryTemperature = 25.5, SystemTemperature = 28.3 },
+                new TemperatureData {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, BatteryTemperature = 24.8, SystemTemperature = 27.7 }
             );
 
             modelBuilder.Entity<BatteryCurrent>().HasData(
-                new BatteryCurrent { BatteryId = 1, Timestamp = DateTime.UtcNow, CurrentIn = 1.2, CurrentOut = 0.8 },
-                new BatteryCurrent { BatteryId = 2, Timestamp = DateTime.UtcNow, CurrentIn = 1.0, CurrentOut = 0.7 }
+                new BatteryCurrent {Id = 1, BatteryId = 1, Timestamp = DateTime.UtcNow, CurrentIn = 1.2, CurrentOut = 0.8 },
+                new BatteryCurrent {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, CurrentIn = 1.0, CurrentOut = 0.7 }
             );
 
 

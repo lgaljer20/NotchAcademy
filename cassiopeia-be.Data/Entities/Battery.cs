@@ -12,7 +12,7 @@ public class Battery : BaseEntity
     public virtual ICollection<BatteryCurrent> BatteryCurrents { get; set; }
 }
 
-public class BatteryStatus
+public class BatteryStatus : BaseEntity
 {
     public double Voltage { get; set; }
     public double Current { get; set; }
@@ -22,7 +22,7 @@ public class BatteryStatus
     public virtual Battery Battery { get; set; }
 }
 
-public class TemperatureData
+public class TemperatureData: BaseEntity
 {
     public DateTime Timestamp { get; set; }
     public double BatteryTemperature { get; set; }
@@ -32,7 +32,7 @@ public class TemperatureData
     public virtual Battery Battery { get; set; }
 }
 
-public class BatteryCurrent
+public class BatteryCurrent :BaseEntity
 {
     public DateTime Timestamp { get; set; }
     public double CurrentIn { get; set; }
