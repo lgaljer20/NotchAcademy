@@ -9,6 +9,9 @@ namespace cassiopeia_be.Data
         public DbSet<SatelliteInfo> SatelliteInfos { get; set; }
 
         public DbSet<AprsMessage> AprsMessages { get; set; }
+        public DbSet<TemperatureData> TemperatureDataRecords { get; set; }
+        public DbSet<BatteryCurrent> BatteryCurrentRecords { get; set; }
+        public DbSet<BatteryStatus>BatteryStatuses { get; set; }
 
         public CassiopeiaContext(DbContextOptions<CassiopeiaContext> options) : base(options)
         { }
@@ -20,7 +23,12 @@ namespace cassiopeia_be.Data
             modelBuilder.Entity<SatelliteInfo>(entity =>
             {
                 entity.Property(e => e.Name).IsRequired();
-                // Configure other properties as needed
+            });
+            modelBuilder.Entity<TemperatureData>(entity =>
+            {
+                entity.Property(e => e.Timestamp).IsRequired();
+                entity.Property(e => e.BatteryTemperature).IsRequired();
+                entity.Property(e => e.SystemTemperature).IsRequired();
             });
 
             modelBuilder.Entity<SatelliteInfo>().HasData(
@@ -103,6 +111,50 @@ namespace cassiopeia_be.Data
                     Source = "NOCALL",
                     SatelliteId = 1
                 });
+            modelBuilder.Entity<Battery>()
+                   .HasOne(b => b.SatelliteInfo)
+                   .WithMany(si => si.Batteries)
+                   .HasForeignKey(b => b.SatelliteId);
+
+
+            modelBuilder.Entity<Battery>()
+                 .HasMany(b => b.BatteryStatuses)
+                 .WithOne(bs => bs.Battery)
+                 .HasForeignKey(bs => bs.BatteryId);
+
+            modelBuilder.Entity<Battery>()
+                .HasMany(b => b.TemperatureDataRecords)
+                .WithOne(td => td.Battery)
+                .HasForeignKey(td => td.BatteryId);
+
+            modelBuilder.Entity<Battery>()
+                .HasMany(b => b.BatteryCurrents)
+                .WithOne(bc => bc.Battery)
+                .HasForeignKey(bc => bc.BatteryId);
+
+            modelBuilder.Entity<Battery>().HasData(
+                new Battery { Id = 1, SatelliteId = 1 },
+                new Battery { Id = 2, SatelliteId = 1 }
+            );
+
+
+            modelBuilder.Entity<BatteryStatus>().HasData(
+                new BatteryStatus {Id = 1, BatteryId = 1, Voltage = 12.5, Current = 5.0, ChargeLevel = 80 },
+                new BatteryStatus {Id = 2, BatteryId = 2, Voltage = 13.2, Current = 4.8, ChargeLevel = 75 }
+            );
+
+            modelBuilder.Entity<TemperatureData>().HasData(
+                new TemperatureData {Id = 1, BatteryId = 1, Timestamp = DateTime.UtcNow, BatteryTemperature = 25.5, SystemTemperature = 28.3 },
+                new TemperatureData {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, BatteryTemperature = 24.8, SystemTemperature = 27.7 }
+            );
+
+            modelBuilder.Entity<BatteryCurrent>().HasData(
+                new BatteryCurrent {Id = 1, BatteryId = 1, Timestamp = DateTime.UtcNow, CurrentIn = 1.2, CurrentOut = 0.8 },
+                new BatteryCurrent {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, CurrentIn = 1.0, CurrentOut = 0.7 }
+            );
+
+
+
         }
     }
 }

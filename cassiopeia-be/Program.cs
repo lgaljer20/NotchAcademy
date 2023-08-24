@@ -16,6 +16,11 @@ builder.Services.AddDbContext<CassiopeiaContext>(options =>
 });
 builder.Services.AddTransient<ISatelliteInfoService, SatelliteInfoService>();
 builder.Services.AddScoped<AprsMessageService>();
+builder.Services.AddScoped<ITemperatureDataService, TemperatureDataService>();
+builder.Services.AddScoped<IBatteryStatusService, BatteryStatusService>();
+builder.Services.AddScoped<IBatteryCurrentService, BatteryCurrentService>();
+
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
