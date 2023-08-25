@@ -17,9 +17,9 @@ namespace cassiopeia_be.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BatteryStatusDTO>> GetBatteryStatus(int SatelliteInfoId)
+        public async Task<ActionResult<BatteryStatusDTO>> GetBatteryStatus(int SatelliteId)
         {
-            var batteryStatus = await _batteryStatusService.GetBatteryStatusAsync( SatelliteInfoId);
+            var batteryStatus = await _batteryStatusService.GetBatteryStatusAsync( SatelliteId);
 
             if (batteryStatus == null)
                 return NotFound();
