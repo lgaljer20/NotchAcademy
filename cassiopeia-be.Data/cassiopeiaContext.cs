@@ -13,6 +13,8 @@ namespace cassiopeia_be.Data
         public DbSet<BatteryCurrent> BatteryCurrentRecords { get; set; }
         public DbSet<BatteryStatus>BatteryStatuses { get; set; }
 
+        public DbSet<Collision> Collisions { get; set; }
+
         public CassiopeiaContext(DbContextOptions<CassiopeiaContext> options) : base(options)
         { }
 
@@ -153,6 +155,10 @@ namespace cassiopeia_be.Data
                 new BatteryCurrent {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, CurrentIn = 1.0, CurrentOut = 0.7 }
             );
 
+            modelBuilder.Entity<Collision>().HasData(
+               new Collision { Id = 1, Timestamp = DateTime.UtcNow, SatelliteId = 1, CollisionType = "Collision with space debris" },
+               new Collision { Id = 2, Timestamp = DateTime.UtcNow, SatelliteId = 1, CollisionType = "Collision with space debris" }
+            );
 
 
         }
