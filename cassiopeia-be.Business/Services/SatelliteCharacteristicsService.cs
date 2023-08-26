@@ -212,7 +212,7 @@ namespace cassiopeia_be.Business.Services
 
                         }
                     }
-                    satellite.CollisionTime = kolizija.Min();
+                    satellite.CollisionTime = kolizija.Min(); //sto ak je prazno
                     CollisionSatellite.Add(satellite);
 
                 }
