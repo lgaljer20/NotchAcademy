@@ -13,6 +13,8 @@ namespace cassiopeia_be.Data
         public DbSet<BatteryCurrent> BatteryCurrentRecords { get; set; }
         public DbSet<BatteryStatus>BatteryStatuses { get; set; }
 
+        public DbSet<SatelliteCharacteristics> SatelliteCharacteristics { get; set; }
+
         public CassiopeiaContext(DbContextOptions<CassiopeiaContext> options) : base(options)
         { }
 
@@ -153,9 +155,9 @@ namespace cassiopeia_be.Data
                 new BatteryCurrent {Id = 2, BatteryId = 2, Timestamp = DateTime.UtcNow, CurrentIn = 1.0, CurrentOut = 0.7 }
             );
 
+          
 
-
-        }
+       }
     }
 }
 
