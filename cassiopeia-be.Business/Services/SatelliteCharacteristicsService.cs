@@ -136,13 +136,11 @@ namespace cassiopeia_be.Business.Services
             return list;
         }
 
-        public bool signum(float characteristic)
+        public bool signum(double a, double b)
         {
-            if (characteristic >= 0)
-                return true;
-            else
-                return false;
+            return (a * b) > 0;
         }
+
 
         public async Task<(List<SatelliteCharacteristicsDTO> CollisionSatellites , List<SatelliteCharacteristicsDTO> GoodSatellites)> CheckForCollision()
         
@@ -157,18 +155,20 @@ namespace cassiopeia_be.Business.Services
                 {
                     continue;
                 }
+                if (signum(cassiopeiaSatellite.Coordinate_x, satellite.Coordinate_x) &&
+                    signum(cassiopeiaSatellite.Coordinate_y, satellite.Coordinate_y) &&
+                    signum(cassiopeiaSatellite.Coordinate_z, satellite.Coordinate_z)
+                )
 
-                if (signum(cassiopeiaSatellite.Coordinate_x) == signum(satellite.Coordinate_x) &&
-                    signum(cassiopeiaSatellite.Coordinate_y) == signum(satellite.Coordinate_y) &&
-                    signum(cassiopeiaSatellite.Coordinate_z) == signum(satellite.Coordinate_z)
-                    )
                 {
                     collision_position = true;
                 }
 
-                if (signum(cassiopeiaSatellite.Velocity_x) == signum(satellite.Velocity_x) &&
-              signum(cassiopeiaSatellite.Velocity_y) == signum(satellite.Velocity_y) &&
-              signum(cassiopeiaSatellite.Velocity_z) == signum(satellite.Velocity_z)) {
+                if (signum(cassiopeiaSatellite.Velocity_x, satellite.Velocity_x) &&
+             signum(cassiopeiaSatellite.Velocity_y, satellite.Velocity_y) &&
+                signum(cassiopeiaSatellite.Velocity_z, satellite.Velocity_z)
+                )
+                { 
                     collision_velocity = true;
                 }
            
