@@ -10,6 +10,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cassiopeia-be.Data", "cassi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka", "Kafka\Kafka.csproj", "{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caching.ConsoleApp", "Caching.ConsoleApp\Caching.ConsoleApp.csproj", "{6DEDA65A-BE66-46C1-97B6-7DECB191C823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caching.Business", "Caching.Business\Caching.Business.csproj", "{1E0FEC2A-E86A-47A3-A553-9B01607FA8F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DEDA65A-BE66-46C1-97B6-7DECB191C823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DEDA65A-BE66-46C1-97B6-7DECB191C823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DEDA65A-BE66-46C1-97B6-7DECB191C823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DEDA65A-BE66-46C1-97B6-7DECB191C823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0FEC2A-E86A-47A3-A553-9B01607FA8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0FEC2A-E86A-47A3-A553-9B01607FA8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0FEC2A-E86A-47A3-A553-9B01607FA8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0FEC2A-E86A-47A3-A553-9B01607FA8F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
