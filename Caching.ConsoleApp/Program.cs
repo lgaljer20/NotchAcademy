@@ -10,18 +10,23 @@ namespace Caching
 {
     static void Main(string[] args)
     {
-        
+
         ServiceCollection services = new ServiceCollection();
+
         services.AddScoped<ICachingService, CachingService>();
         services.AddScoped<DataContext>();
+
+        var characteristicsService = new Characteristics("34.159.95.180:9092", "cassiopeia", "cassiopeia-dev1");
+        services.AddSingleton<Characteristics>(characteristicsService);
 
         var serviceProvider = services.BuildServiceProvider();
 
         ICachingService cachingService = serviceProvider.GetRequiredService<ICachingService>();
-        
+        Characteristics characteristicsService = serviceProvider.GetRequiredService<Characteristics>();
+
         Console.WriteLine("First run:");
         List<SatelliteInfo> satellites = cachingService.GetAll().ToList();
-        
+
         foreach (CacheEntryExtensions satellite in satellites)
         {
             Console.WriteLine(satellite.Name);
@@ -34,6 +39,10 @@ namespace Caching
         {
             Console.WriteLine(satellite.Name);
         }
+
+        await characteristicsService.ConsumeMessagesAsync();
+
+        characteristicsService.Dispose();
 
 
 
