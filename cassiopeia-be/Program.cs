@@ -39,11 +39,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseCors(c => c.AllowAnyHeader().WithMethods("GET", "PUT", "POST", "PATCH", "DELETE", "HEAD", "OPTIONS").AllowAnyOrigin().WithExposedHeaders("Content-Disposition"));
 }
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetService<CassiopeiaContext>();
-//    await context.Database.MigrateAsync();
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetService<CassiopeiaContext>();
+    await context.Database.MigrateAsync();
+}
 
 
 app.Run();
