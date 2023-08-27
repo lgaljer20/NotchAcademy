@@ -141,7 +141,25 @@ namespace cassiopeia_be.Business.Services
             return (a * b) > 0;
         }
 
+        public DateTime GetLastTime(SatelliteCharacteristicsDTO satellite)
+        {
+            return satellite.Time;
+        }
 
+        public SatelliteCharacteristicsDTO NewPosition(SatelliteCharacteristicsDTO satellite)
+        {
+            DateTime oldTime = GetLastTime(satellite);
+            TimeSpan duration = DateTime.Now - oldTime;
+
+            double seconds = duration.TotalSeconds;
+
+            satellite.Coordinate_x = (float)(satellite.Coordinate_x + seconds * satellite.Velocity_x);
+            satellite.Coordinate_y = (float)(satellite.Coordinate_y + seconds * satellite.Velocity_y);
+            satellite.Coordinate_z = (float)(satellite.Coordinate_z + seconds * satellite.Velocity_z);
+
+            return satellite;
+
+        }
         public async Task<(List<SatelliteCharacteristicsDTO> CollisionSatellites , List<SatelliteCharacteristicsDTO> GoodSatellites)> CheckForCollision()
         
             {
@@ -149,12 +167,17 @@ namespace cassiopeia_be.Business.Services
 
             SatelliteCharacteristicsDTO cassiopeiaSatellite = list.FirstOrDefault(s => s.Id == "cassiopeia");
 
-            foreach (var satellite in list)
-            {
+            NewPosition(cassiopeiaSatellite);
+
+                foreach (var satellite in list)
+                {
                 if (satellite.Id == "cassiopeia")
                 {
                     continue;
                 }
+
+                NewPosition(satellite);
+
                 if (signum(cassiopeiaSatellite.Coordinate_x, satellite.Coordinate_x) &&
                     signum(cassiopeiaSatellite.Coordinate_y, satellite.Coordinate_y) &&
                     signum(cassiopeiaSatellite.Coordinate_z, satellite.Coordinate_z)
