@@ -22,8 +22,7 @@ builder.Services.AddScoped<AprsMessageService>();
 builder.Services.AddScoped<ITemperatureDataService, TemperatureDataService>();
 builder.Services.AddScoped<IBatteryStatusService, BatteryStatusService>();
 builder.Services.AddScoped<IBatteryCurrentService, BatteryCurrentService>();
-
-
+builder.Services.AddScoped<SatelliteCharacteristicsService>();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -38,11 +37,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseCors(c => c.AllowAnyHeader().WithMethods("GET", "PUT", "POST", "PATCH", "DELETE", "HEAD", "OPTIONS").AllowAnyOrigin().WithExposedHeaders("Content-Disposition"));
 }
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetService<CassiopeiaContext>();
-    await context.Database.MigrateAsync();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetService<CassiopeiaContext>();
+//    await context.Database.MigrateAsync();
+//}
 
 
 app.Run();
