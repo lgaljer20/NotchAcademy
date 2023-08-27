@@ -16,9 +16,9 @@ namespace cassiopeia_be.Business.Services
 {
     public class SatelliteCharacteristicsService
     {
-        public List<SatelliteCharacteristicsDTO> CollisionSatellite { get; set; }
+        public List<SatelliteCharacteristicsDTO> CollisionSatellites = new List<SatelliteCharacteristicsDTO>();
 
-        public List<SatelliteCharacteristicsDTO> GoodSatellites { get; set; }
+        public List<SatelliteCharacteristicsDTO> GoodSatellites = new List<SatelliteCharacteristicsDTO>();
 
         private bool collision_position;
         private bool collision_velocity;
@@ -37,45 +37,6 @@ namespace cassiopeia_be.Business.Services
         {
             _context = context;
         }
-
-        //public async Task<bool> CreateAsync(JArray jsonArray)
-        //{
-
-        //        List<CreateEditSatelliteCharacteristicsDTO> satellites = jsonArray.ToObject<List<CreateEditSatelliteCharacteristicsDTO>>();
-
-        //        foreach (var satellite in satellites)
-        //        {
-        //        bool exists = await _context.SatelliteCharacteristics.AnyAsync(s => s.Id == satellite.Id);
-        //        if (exists)
-        //        {
-
-        //            continue;
-        //        }
-
-        //        var entity = new SatelliteCharacteristics
-        //            {
-        //                Id = satellite.Id,
-        //                Time = DateTime.Now,
-        //                Coordinate_x = satellite.Coordinate_x,
-        //                Coordinate_y = satellite.Coordinate_y,
-        //                Coordinate_z = satellite.Coordinate_z,
-        //                Acceleration_x = satellite.Acceleration_x,
-        //                Acceleration_y = satellite.Acceleration_y,
-        //                Acceleration_z = satellite.Acceleration_z,
-        //                Velocity_x = satellite.Velocity_x,
-        //                Velocity_y = satellite.Velocity_y,
-        //                Velocity_z = satellite.Velocity_z
-
-        //            };
-
-        //            await _context.SatelliteCharacteristics.AddAsync(entity);
-        //        }
-
-        //        int result = await _context.SaveChangesAsync();
-
-        //        return result > 0;
-
-        //}
 
         public async Task<bool> CreateAsync(JArray jsonArray)
         {
@@ -163,15 +124,21 @@ namespace cassiopeia_be.Business.Services
         public async Task<(List<SatelliteCharacteristicsDTO> CollisionSatellites , List<SatelliteCharacteristicsDTO> GoodSatellites)> CheckForCollision()
         
             {
-            List<SatelliteCharacteristicsDTO> list = (await GetAllAsync()).ToList();
+            var allSatellites = await GetAllAsync();
+            foreach (var sat in allSatellites)
+            {
+                Console.WriteLine($"ID: {sat.Id}, X: {sat.Coordinate_x}, ...");
+            }
+            List<SatelliteCharacteristicsDTO> list = allSatellites.ToList();
 
-            SatelliteCharacteristicsDTO cassiopeiaSatellite = list.FirstOrDefault(s => s.Id == "cassiopeia");
+
+            SatelliteCharacteristicsDTO cassiopeiaSatellite = list.FirstOrDefault(s => s.Id == "cassio");
 
             NewPosition(cassiopeiaSatellite);
 
                 foreach (var satellite in list)
                 {
-                if (satellite.Id == "cassiopeia")
+                if (satellite.Id == "cassio")
                 {
                     continue;
                 }
@@ -203,26 +170,26 @@ namespace cassiopeia_be.Business.Services
                 }
                 else
                 {
-                    coo_x_diff = (cassiopeiaSatellite.Coordinate_x - satellite.Coordinate_x);
-                    coo_y_diff = (cassiopeiaSatellite.Coordinate_y - satellite.Coordinate_y);
-                    coo_z_diff = (cassiopeiaSatellite.Coordinate_z - satellite.Coordinate_z);
+                    coo_x_diff = Math.Abs((cassiopeiaSatellite.Coordinate_x - satellite.Coordinate_x));
+                    coo_y_diff = Math.Abs((cassiopeiaSatellite.Coordinate_y - satellite.Coordinate_y));
+                    coo_z_diff = Math.Abs((cassiopeiaSatellite.Coordinate_z - satellite.Coordinate_z));
 
-                    vel_x_diff = (cassiopeiaSatellite.Velocity_x - satellite.Velocity_x);
-                    vel_y_diff = (cassiopeiaSatellite.Velocity_y - satellite.Velocity_y);
-                    vel_z_diff = (cassiopeiaSatellite.Velocity_z - satellite.Velocity_z);
+                    vel_x_diff = Math.Abs((cassiopeiaSatellite.Velocity_x - satellite.Velocity_x));
+                    vel_y_diff = Math.Abs((cassiopeiaSatellite.Velocity_y - satellite.Velocity_y));
+                    vel_z_diff = Math.Abs((cassiopeiaSatellite.Velocity_z - satellite.Velocity_z));
 
-                    acc_x_diff = (cassiopeiaSatellite.Acceleration_x - satellite.Acceleration_x);
-                    acc_y_diff = (cassiopeiaSatellite.Acceleration_y - satellite.Acceleration_y);
-                    acc_z_diff = (cassiopeiaSatellite.Acceleration_z - satellite.Acceleration_z);
+                    acc_x_diff = Math.Abs((cassiopeiaSatellite.Acceleration_x - satellite.Acceleration_x));
+                    acc_y_diff = Math.Abs((cassiopeiaSatellite.Acceleration_y - satellite.Acceleration_y));
+                    acc_z_diff = Math.Abs((cassiopeiaSatellite.Acceleration_z - satellite.Acceleration_z));
 
                     double[] izračun = new double[6];
                     double[] kolizija = new double[6];
-                    izračun[0] = (-(vel_x_diff) + Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Sqrt(vel_x_diff)));
-                    izračun[1] = (-(vel_x_diff) - Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Sqrt(vel_x_diff)));
-                    izračun[2] = (-(vel_y_diff) + Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Sqrt(vel_y_diff)));
-                    izračun[3] = (-(vel_y_diff) - Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Sqrt(vel_y_diff)));
-                    izračun[4] = (-(vel_z_diff) + Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Sqrt(vel_z_diff)));
-                    izračun[5] = (-(vel_z_diff) - Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Sqrt(vel_z_diff)));
+                    izračun[0] = (-(vel_x_diff) + Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
+                    izračun[1] = (-(vel_x_diff) - Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
+                    izračun[2] = (-(vel_y_diff) + Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
+                    izračun[3] = (-(vel_y_diff) - Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
+                    izračun[4] = (-(vel_z_diff) + Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
+                    izračun[5] = (-(vel_z_diff) - Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
 
                     for (int i = 0; i <6; i++)
                     {
@@ -235,17 +202,54 @@ namespace cassiopeia_be.Business.Services
 
                         }
                     }
-                    satellite.CollisionTime = kolizija.Min(); //sto ak je prazno
-                    CollisionSatellite.Add(satellite);
+                    if (kolizija.Any(x => x > 0))  // If kolizija has any positive value
+                    {
+                        satellite.CollisionTime = kolizija.Where(x => x > 0).Min();
+                        CollisionSatellites.Add(satellite);
+                    }
 
                 }
 
             }
+            if (CollisionSatellites != null)
+            {
+                CollisionSatellites = CollisionSatellites.OrderBy(s => s.CollisionTime).ToList();
+            }
 
-            return (CollisionSatellite, GoodSatellites);
+  
+            return (CollisionSatellites, GoodSatellites);
 
 
         }
+
+        public async Task UpdateManualPositionAndVelocityAsync(float c_x, float c_y, float c_z, float v)
+        {
+            var cassiopeiaSatellite = _context.SatelliteCharacteristics.FirstOrDefault(s => s.Id == "cassiopeia");
+
+            if (cassiopeiaSatellite == null)
+            {
+              
+                return;
+            }
+
+            float v_x_ms = v * (1000f / 3600f);
+            float v_y_ms = v * (1000f / 3600f);
+            float v_z_ms = v * (1000f / 3600f);
+
+            cassiopeiaSatellite.Coordinate_x = c_x;
+            cassiopeiaSatellite.Coordinate_y = c_y;
+            cassiopeiaSatellite.Coordinate_z = c_z;
+
+            cassiopeiaSatellite.Velocity_x = v_x_ms;
+            cassiopeiaSatellite.Velocity_y = v_y_ms;
+            cassiopeiaSatellite.Velocity_z = v_z_ms;
+
+
+            await _context.SaveChangesAsync();
+        }
+
+       
+
 
     }
 }

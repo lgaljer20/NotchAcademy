@@ -23,6 +23,8 @@ builder.Services.AddScoped<ITemperatureDataService, TemperatureDataService>();
 builder.Services.AddScoped<IBatteryStatusService, BatteryStatusService>();
 builder.Services.AddScoped<IBatteryCurrentService, BatteryCurrentService>();
 builder.Services.AddScoped<SatelliteCharacteristicsService>();
+builder.Services.AddScoped<ThrusterService>();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
