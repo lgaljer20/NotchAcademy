@@ -133,13 +133,13 @@ namespace cassiopeia_be.Business.Services
             List<SatelliteCharacteristicsDTO> list = allSatellites.ToList();
 
 
-            SatelliteCharacteristicsDTO cassiopeiaSatellite = list.FirstOrDefault(s => s.Id == "cassio");
+            SatelliteCharacteristicsDTO cassiopeiaSatellite = list.FirstOrDefault(s => s.Id == "cassiopeia");
 
             NewPosition(cassiopeiaSatellite);
 
                 foreach (var satellite in list)
                 {
-                if (satellite.Id == "cassio")
+                if (satellite.Id == "cassiopeia")
                 {
                     continue;
                 }
