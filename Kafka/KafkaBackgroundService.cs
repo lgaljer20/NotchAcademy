@@ -24,11 +24,11 @@ namespace Kafka
                 GroupId = "cassiopeia",
                 AutoOffsetReset = AutoOffsetReset.Earliest,
             };
-            var optionsBuilder = new DbContextOptionsBuilder<cassiopeiaContext>()
+            var optionsBuilder = new DbContextOptionsBuilder<CassiopeiaContext>()
                 .UseSqlServer(configuration.GetConnectionString("cassiopeiaDB"));
             using var consumer = new ConsumerBuilder<Ignore, string>(kafkaConfig).Build();
             consumer.Subscribe("cassiopeia-dev2");
-            using var dbContext = new cassiopeiaContext(optionsBuilder.Options);
+            using var dbContext = new CassiopeiaContext(optionsBuilder.Options);
        
                 while (true)
                 {
