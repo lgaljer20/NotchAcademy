@@ -182,29 +182,29 @@ namespace cassiopeia_be.Business.Services
                     acc_y_diff = Math.Abs((cassiopeiaSatellite.Acceleration_y - satellite.Acceleration_y));
                     acc_z_diff = Math.Abs((cassiopeiaSatellite.Acceleration_z - satellite.Acceleration_z));
 
-                    double[] izračun = new double[6];
-                    double[] kolizija = new double[6];
-                    izračun[0] = (-(vel_x_diff) + Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
-                    izračun[1] = (-(vel_x_diff) - Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
-                    izračun[2] = (-(vel_y_diff) + Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
-                    izračun[3] = (-(vel_y_diff) - Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
-                    izračun[4] = (-(vel_z_diff) + Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
-                    izračun[5] = (-(vel_z_diff) - Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
+                    double[] calculations = new double[6];
+                    double[] collisions = new double[6];
+                    calculations[0] = (-(vel_x_diff) + Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
+                    calculations[1] = (-(vel_x_diff) - Math.Sqrt(4 * (acc_x_diff) * (coo_x_diff) - Math.Pow(vel_x_diff,2)));
+                    calculations[2] = (-(vel_y_diff) + Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
+                    calculations[3] = (-(vel_y_diff) - Math.Sqrt(4 * (acc_y_diff) * (coo_y_diff) - Math.Pow(vel_y_diff,2)));
+                    calculations[4] = (-(vel_z_diff) + Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
+                    calculations[5] = (-(vel_z_diff) - Math.Sqrt(4 * (acc_z_diff) * (coo_z_diff) - Math.Pow(vel_z_diff,2)));
 
                     for (int i = 0; i <6; i++)
                     {
                         int j = 0;
-                        if (izračun[i] > 0)
+                        if (calculations[i] > 0)
                         {
 
-                            kolizija[j] = izračun[i];
+                            collisions[j] = calculations[i];
                             j++;
 
                         }
                     }
-                    if (kolizija.Any(x => x > 0))  // If kolizija has any positive value
+                    if (collisions.Any(x => x > 0))  // If kolizija has any positive value
                     {
-                        satellite.CollisionTime = kolizija.Where(x => x > 0).Min();
+                        satellite.CollisionTime = collisions.Where(x => x > 0).Min();
                         CollisionSatellites.Add(satellite);
                     }
 
