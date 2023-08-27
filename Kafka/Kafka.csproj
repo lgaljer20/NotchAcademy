@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\cassiopeia-be.Business\cassiopeia-be.Business.csproj" />
     <ProjectReference Include="..\cassiopeia-be.Data\cassiopeia-be.Data.csproj" />
   </ItemGroup>
 

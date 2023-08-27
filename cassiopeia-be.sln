@@ -1,14 +1,14 @@
-
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cassiopeia-be", "cassiopeia-be\cassiopeia-be.csproj", "{8F351C45-21C0-4300-89E3-A52E680DBD81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassiopeia-be.Business", "cassiopeia-be.Business\cassiopeia-be.Business.csproj", "{B2D2CEBF-C1B1-4704-B1D9-4EFF85148AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cassiopeia-be.Business", "cassiopeia-be.Business\cassiopeia-be.Business.csproj", "{B2D2CEBF-C1B1-4704-B1D9-4EFF85148AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cassiopeia-be.Data", "cassiopeia-be.Data\cassiopeia-be.Data.csproj", "{DC001C4F-4DA6-4471-8AF8-E22769595FED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cassiopeia-be.Data", "cassiopeia-be.Data\cassiopeia-be.Data.csproj", "{DC001C4F-4DA6-4471-8AF8-E22769595FED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kafka", "Kafka\Kafka.csproj", "{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +28,10 @@ Global
 		{DC001C4F-4DA6-4471-8AF8-E22769595FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC001C4F-4DA6-4471-8AF8-E22769595FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC001C4F-4DA6-4471-8AF8-E22769595FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ACC233D-1EE9-438F-9ECD-31AA4361FFAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,4 +40,3 @@ Global
 		SolutionGuid = {744B350A-A8BE-4010-BF5A-1D35D8097DC6}
 	EndGlobalSection
 EndGlobal
-

@@ -1,7 +1,5 @@
 ﻿using Confluent.Kafka;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Kafka
 {
@@ -18,7 +16,7 @@ namespace Kafka
 
             using var consumer = new ConsumerBuilder<Ignore, string>(kafkaConfig).Build();
 
-            consumer.Subscribe("cassiopeia-dev2");
+            consumer.Subscribe("cassiopeia-dev3");
 
             while (true)
             {
@@ -30,27 +28,20 @@ namespace Kafka
 
                     try
                     {
-                        var jsonArray = JArray.Parse(positionMessage);
+                        var item = JsonConvert.DeserializeObject<KafkaMessages>(positionMessage);
 
-                        foreach (var item in jsonArray)
-                        {
-                            var satelliteId = item["id"].ToString();
-                            var coordinates = item["coordinates"];
-                            var velocity = item["velocity"];
-                            var acceleration = item["acceleration"];
-
-                            Console.WriteLine($"Received message for satellite {satelliteId}:");
-                            Console.WriteLine($"Coordinates: x={coordinates["x"]}, y={coordinates["y"]}, z={coordinates["z"]}");
-                            Console.WriteLine($"Velocity: x={velocity["x"]}, y={velocity["y"]}, z={velocity["z"]}");
-                            Console.WriteLine($"Acceleration: x={acceleration["x"]}, y={acceleration["y"]}, z={acceleration["z"]}");
-                        }
+                        Console.WriteLine($"Received message for satellite {item.Id}:");
+                        Console.WriteLine($"Coordinates: x={item.Coordinates.X}, y={item.Coordinates.Y}, z={item.Coordinates.Z}");
+                        Console.WriteLine($"Velocity: x={item.Velocity.X}, y={item.Velocity.Y}, z={item.Velocity.Z}");
+                        Console.WriteLine($"Acceleration: x={item.Acceleration.X}, y={item.Acceleration.Y}, z={item.Acceleration.Z}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error parsing message: {ex.Message}");
+                        Console.WriteLine($"Error deserializing message: {ex.Message}");
                     }
                 }
             }
         }
     }
 }
+
